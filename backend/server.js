@@ -8,7 +8,8 @@ const dotenv = require('dotenv');
 // Cargar variables de entorno
 dotenv.config();
 
-const productosRouter = require("./routes/productos");
+const productosRouter = require("./routes/productRoutes");
+const authRouter = require("./routes/authRoutes");
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.use(express.json());
 app.use(morgan("combined"));
 
 // Rutas API
-app.use("/productos", productosRouter);
+app.use("/api/products", productosRouter);
+app.use("/api/auth", authRoutes);
 
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, "../frontend")));
@@ -35,7 +37,7 @@ app.use((err, req, res, next) => {
 });
 
 // Conexión a Mongo y arranque del servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/tienda";
 
 mongoose.connect(MONGO_URI)
