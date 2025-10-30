@@ -20,7 +20,7 @@ app.use(morgan("combined"));
 
 // Rutas API
 app.use("/api/products", productosRouter);
-app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRouter);
 
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, "../frontend")));
