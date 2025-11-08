@@ -47,9 +47,7 @@ app.get('/', (_req, res) => {
 // Ruta simple para comprobar vida
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
-// --- Socket.IO con autenticación JWT ---
-import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from './config.js';
+
 
 io.use((socket, next) => {
   const token = socket.handshake.auth?.token;

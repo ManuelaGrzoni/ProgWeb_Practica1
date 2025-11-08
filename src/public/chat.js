@@ -9,7 +9,7 @@ if (!token || !user) {
 document.getElementById('who').textContent = `${user.username} (${user.role})`;
 
 const socket = io({
-  auth: { token } // 🔐 el servidor lo verificará en io.use
+  auth: { token } 
 });
 
 const form = document.getElementById('form');
