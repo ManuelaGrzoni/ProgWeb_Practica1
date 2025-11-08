@@ -1,22 +1,24 @@
 {
   "name": "progweb_practica1-1",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Práctica 1 - Programación Web",
+  "type": "module",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ManuelaGrzoni/ProgWeb_Practica1.git"
+    "url": "git+https://github.com/ManuelaGrzoni/ProgWeb_Practica1-1.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Manuela Grzoni",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ManuelaGrzoni/ProgWeb_Practica1/issues"
+    "url": "https://github.com/ManuelaGrzoni/ProgWeb_Practica1-1/issues"
   },
-  "homepage": "https://github.com/ManuelaGrzoni/ProgWeb_Practica1#readme",
+  "homepage": "https://github.com/ManuelaGrzoni/ProgWeb_Practica1-1#readme",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
@@ -25,6 +27,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.3",
+    "morgan": "^1.10.1",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {

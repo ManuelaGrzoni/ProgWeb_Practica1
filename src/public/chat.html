@@ -1,36 +1,33 @@
-<!-- src/public/chat.html -->
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <title>Chat</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    #messages { list-style: none; padding: 0; }
+    #messages li { margin: .25rem 0; }
+    .sys { color: #666; font-style: italic; }
+    .me { font-weight: 600; }
+    #typing { color: #888; height: 1.2rem; }
+    #chatbox { display: grid; gap: .5rem; max-width: 680px; margin: 1rem auto; }
+    #form { display:flex; gap:.5rem; }
+    #input { flex: 1; }
+  </style>
 </head>
 <body>
-  <h2>Chat (demo, sin auth aún)</h2>
-  <ul id="messages"></ul>
-  <form id="form">
-    <input id="input" autocomplete="off" /><button>Enviar</button>
-  </form>
+  <main id="chatbox">
+    <h1>Chat</h1>
+    <div>Usuario: <span id="who"></span></div>
+    <div id="typing"></div>
+    <ul id="messages"></ul>
+    <form id="form">
+      <input id="input" autocomplete="off" placeholder="Escribe un mensaje..." />
+      <button>Enviar</button>
+    </form>
+  </main>
+
   <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io();
-    const form = document.getElementById('form');
-    const input = document.getElementById('input');
-    const list = document.getElementById('messages');
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (input.value) {
-        socket.emit('chat:message', input.value);
-        input.value = '';
-      }
-    });
-
-    socket.on('chat:message', (msg) => {
-      const li = document.createElement('li');
-      li.textContent = msg;
-      list.appendChild(li);
-    });
-  </script>
+  <script type="module" src="/chat.js"></script>
 </body>
 </html>
