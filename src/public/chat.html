@@ -3,30 +3,56 @@
 <head>
   <meta charset="utf-8" />
   <title>Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="/styles.css" />
   <style>
-    #messages { list-style: none; padding: 0; }
-    #messages li { margin: .25rem 0; }
-    .sys { color: #666; font-style: italic; }
-    .me { font-weight: 600; }
-    #typing { color: #888; height: 1.2rem; }
-    #chatbox { display: grid; gap: .5rem; max-width: 680px; margin: 1rem auto; }
-    #form { display:flex; gap:.5rem; }
-    #input { flex: 1; }
+    /* Estilos mínimos para el chat */
+    #chatbox{ max-width: 820px; margin: 1rem auto; display: grid; gap: .75rem; }
+    .topbar{ display:flex; justify-content: space-between; align-items:center; gap:.5rem; }
+    #userCount{ font-weight: 700; opacity:.9; }
+    #joinForm{ display:flex; gap:.5rem; flex-wrap: wrap; align-items:center; }
+    #messages{ list-style: none; margin:0; padding:0; border:1px solid var(--border); background:#0b1327; border-radius: 12px; max-height: 420px; overflow:auto; }
+    #messages li{ padding:.5rem .75rem; border-bottom:1px solid rgba(255,255,255,.05); }
+    #messages li:last-child{ border-bottom:none; }
+    .sys{ color:#aab2c7; font-style: italic; }
+    .dot{ display:inline-block; width:.55rem; height:.55rem; border-radius:999px; margin-right:.4rem; transform: translateY(-1px); }
+    .dot.green{ background:#22c55e; }  /* join */
+    .dot.red{ background:#ef4444; }    /* leave */
+    .meta{ opacity:.7; font-size:.85rem; }
+    .name{ font-weight:700; }
+    .me .name{ text-decoration: underline; }
+    #typing{ color:#9aa4bd; min-height: 1.1rem; }
+    #form{ display:flex; gap:.5rem; }
+    #input{ flex:1; }
+    .pop{ animation: pop .25s ease; }
+    @keyframes pop{ from{ transform: scale(.98); background:rgba(124,58,237,.12);} to{ transform: scale(1); background:transparent; } }
   </style>
 </head>
 <body>
   <main id="chatbox">
-    <h1>Chat</h1>
-    <div>Usuario: <span id="who"></span></div>
+    <div class="topbar">
+      <div>
+        <strong>Chat</strong>
+        <span id="userCount">Usuarios conectados: 0</span>
+      </div>
+      <!-- Definir nombre / color -->
+      <form id="joinForm">
+        <input id="name" class="input" placeholder="Tu nombre" style="width:12rem" />
+        <input id="color" class="input" type="color" value="#7c3aed" title="Color" style="width:3.5rem; padding:.2rem;" />
+        <button class="btn primary" type="submit">Entrar / Cambiar</button>
+      </form>
+    </div>
+
     <div id="typing"></div>
-    <ul id="messages"></ul>
+    <ul id="messages" aria-live="polite"></ul>
+
     <form id="form">
-      <input id="input" autocomplete="off" placeholder="Escribe un mensaje..." />
-      <button>Enviar</button>
+      <input id="input" class="input" autocomplete="off" placeholder="Escribe un mensaje…" />
+      <button class="btn primary">Enviar</button>
     </form>
   </main>
 
+  <audio id="ding" src="/ding.mp3" preload="auto"></audio>
   <script src="/socket.io/socket.io.js"></script>
   <script type="module" src="/chat.js"></script>
 </body>

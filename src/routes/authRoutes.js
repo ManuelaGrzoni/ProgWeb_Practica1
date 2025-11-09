@@ -1,4 +1,3 @@
-// src/routes/authRoutes.js
 import { Router } from 'express';
 import User from '../models/User.js';
 import { signToken } from '../utils/jwt.js';
@@ -15,7 +14,6 @@ router.post('/register', async (req, res) => {
     const exists = await User.findOne({ $or: [{ email }, { username }] });
     if (exists) return res.status(409).json({ message: 'Usuario o email ya existe' });
 
-    // role opcional; por seguridad, si llega 'admin' puedes ignorarlo o controlarlo detrás.
     const user = await User.create({ username, email, password, role: role === 'admin' ? 'admin' : 'user' });
 
     const token = signToken({ id: user._id, username: user.username, role: user.role });
@@ -28,7 +26,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-/** POST /api/auth/login */
 router.post('/login', async (req, res) => {
   try {
     const { emailOrUsername, password } = req.body;
@@ -55,9 +52,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
-/** GET /api/auth/me (protegido) */
 router.get('/me', authenticate, async (req, res) => {
-  res.json({ user: req.user }); // { id, username, role }
+  res.json({ user: req.user }); 
 });
 
 export default router;

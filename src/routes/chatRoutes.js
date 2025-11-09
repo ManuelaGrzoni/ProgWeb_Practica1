@@ -4,7 +4,6 @@ import Message from "../models/Message.js";
 
 const router = Router();
 
-// Últimos N mensajes (por defecto 20)
 router.get("/history", authenticate, async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit || "20", 10), 100);
   const items = await Message.find({ room: "global" })

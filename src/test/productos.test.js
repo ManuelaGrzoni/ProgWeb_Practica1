@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server'); // Importamos la app de Express
+const app = require('../server'); 
 
 describe('API de productos', () => {
   it('GET /api/productos debería devolver lista de productos', async () => {

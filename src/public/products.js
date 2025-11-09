@@ -1,7 +1,7 @@
 const API = '/api/products';
 
 const token = localStorage.getItem('token'); // guardado tras login
-const user  = JSON.parse(localStorage.getItem('user') || 'null'); // {id, username, role}
+const user  = JSON.parse(localStorage.getItem('user') || 'null');
 
 const isAdmin = user?.role === 'admin';
 const adminBox = document.getElementById('adminBox');
@@ -31,7 +31,6 @@ async function fetchProducts(params = {}) {
   const res = await fetch(url, { headers: { ...authHeaders() } });
   if (!res.ok) throw new Error('Error al cargar productos');
   const data = await res.json();
-  // si controller devuelve {items,...} úsalo; si devuelve array, adapta:
   return Array.isArray(data) ? data : data.items;
 }
 

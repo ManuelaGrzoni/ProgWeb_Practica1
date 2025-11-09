@@ -45,7 +45,6 @@ export async function listProducts(req, res) {
   });
 }
 
-// GET /api/products/:id  (público o restringido: decide en rutas)
 export async function getProduct(req, res) {
   const { id } = req.params;
   if (!isValidId(id)) return res.status(400).json({ message: 'ID inválido' });
@@ -54,7 +53,6 @@ export async function getProduct(req, res) {
   res.json(p);
 }
 
-// POST /api/products  (solo admin)
 export async function createProduct(req, res) {
   const { name, price, description, imageUrl } = req.body;
   if (!name || price == null) {
@@ -64,7 +62,6 @@ export async function createProduct(req, res) {
   res.status(201).json(created);
 }
 
-// PUT /api/products/:id  (solo admin)
 export async function updateProduct(req, res) {
   const { id } = req.params;
   if (!isValidId(id)) return res.status(400).json({ message: 'ID inválido' });
@@ -73,7 +70,6 @@ export async function updateProduct(req, res) {
   res.json(updated);
 }
 
-// DELETE /api/products/:id  (solo admin)
 export async function deleteProduct(req, res) {
   const { id } = req.params;
   if (!isValidId(id)) return res.status(400).json({ message: 'ID inválido' });
