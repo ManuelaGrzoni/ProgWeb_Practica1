@@ -1,3 +1,5 @@
+// src/public/products.js
+
 const API = '/api/products';
 
 const token = localStorage.getItem('token'); // guardado tras login
@@ -5,7 +7,7 @@ const user  = JSON.parse(localStorage.getItem('user') || 'null');
 
 const isAdmin = user?.role === 'admin';
 const adminBox = document.getElementById('adminBox');
-if (isAdmin) adminBox.style.display = 'block';
+//if (isAdmin) adminBox.style.display = 'block';
 
 const tbody = document.querySelector('#list tbody');
 const form = document.getElementById('form');
@@ -30,7 +32,7 @@ async function fetchProducts(params = {}) {
   const url = `${API}${query ? `?${query}` : ''}`;
   const res = await fetch(url, { headers: { ...authHeaders() } });
   if (!res.ok) throw new Error('Error al cargar productos');
-  const data = await res.json();
+    const data = await res.json();
   return Array.isArray(data) ? data : data.items;
 }
 
@@ -53,12 +55,17 @@ function renderRows(items) {
 }
 
 async function load() {
+  try { 
   const items = await fetchProducts({
     q: qEl.value,
     min: minEl.value,
     max: maxEl.value
   });
   renderRows(items);
+} catch (e) {
+  console.error(e);
+  alert('Error al cargar productos: ' + e.message);
+  }
 }
 load();
 

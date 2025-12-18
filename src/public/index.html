@@ -58,7 +58,6 @@
           </button>
         </div>
         <p id="error" class="note error" hidden></p>
-        <p id="hint" class="note">Los botones de editar/eliminar solo se muestran si tu rol es <b>admin</b>.</p>
       </form>
     </section>
 
@@ -94,7 +93,7 @@
     document.getElementById('logoutBtn')?.addEventListener('click', () => {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      location.reload();
+      window.location.href = '/login.html';
     });
   </script>
 </body>

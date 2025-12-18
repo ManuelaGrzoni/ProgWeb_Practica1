@@ -99,7 +99,7 @@ async function start() {
     await mongoose.connect(MONGO_URI);
     console.log('MongoDB conectado');
     await seedAdmin();
-    server.listen(PORT, () => console.log(`Servidor escuchando en http://localhost:${PORT}`));
+    server.listen(PORT, () => console.log(`Servidor escuchando en http://localhost:${PORT}/login.html`));
   } catch (err) {
     console.error('Error al conectar a MongoDB', err);
     process.exit(1);

@@ -23,7 +23,7 @@ async function cargarProductos() {
     if (!res.ok) throw new Error("Error al cargar productos");
     productos = await res.json();
     paginaActual = 1;
-    renderProductos();
+    renderProductos(productos);
     mostrarMensaje("Productos cargados", "ok");
   } catch (err) {
     mostrarMensaje(err.message, "error");

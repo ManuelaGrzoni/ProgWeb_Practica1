@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Registro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container" style="max-width:420px; margin-top:3rem;">
+    <div class="card">
+      <h1 class="title">Registro</h1>
+
+      <form id="registerForm">
+        <label>Usuario</label>
+        <input id="username" class="input" required />
+
+        <label>Email</label>
+        <input id="email" type="email" class="input" required />
+
+        <label>Contraseña</label>
+        <input id="password" type="password" class="input" required />
+
+        <button class="btn primary" type="submit" style="margin-top:1rem;">Crear cuenta</button>
+      </form>
+
+      <p id="error" class="note error" hidden></p>
+
+      <p class="note" style="margin-top:1rem;">
+        <a href="/login.html">Volver al login</a>
+      </p>
+    </div>
+  </main>
+
+  <script src="/register.js"></script>
+</body>
+</html>

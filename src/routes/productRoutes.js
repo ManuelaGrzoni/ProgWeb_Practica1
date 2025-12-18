@@ -14,6 +14,7 @@ const router = Router();
 router.get('/', listProducts);
 router.get('/:id', getProduct);
 
+router.get('/', authenticate, authorize('admin'), listProducts);
 router.post('/', authenticate, authorize('admin'), createProduct);
 router.put('/:id', authenticate, authorize('admin'), updateProduct);
 router.delete('/:id', authenticate, authorize('admin'), deleteProduct);
